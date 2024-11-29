@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Сборка ПК</title>
+	<link rel="stylesheet" href="main.css">
+	<link rel="stylesheet" href="computer-components.css">
+	<link rel="stylesheet" href="sliders.css">
+	<link rel="stylesheet" href="tips.css">
+	<link rel="stylesheet" href="projects.css">
+	<link rel="stylesheet" href="footer.css">
+</head>
+<body>
+
+<header>
+	<div class="logo">
+		<img src="../Sources/logo.svg" alt="">
+		<span>PC Wizard</span>
+	</div>
+	<nav>
+		<a href="#home">Главная</a>
+		<a href="#components">Комплектующие ПК</a>
+		<a href="#build-tips">Аспекты выбора комплектующих</a>
+		<a href="#projects">Другие проекты</a>
+	</nav>
+</header>
+
+<main>
+	<div id="home" class="main-section">
+		<h1>
+			<p class="site-title">PC Wizard</p>
+			<p class="site-subtitle">«Советы, которые помогут</p>
+			<p class="site-subtitle">не ошибиться с выбором»</p>
+		</h1>
+		<img src="../Sources/wizard.gif" alt=""/>
+	</div>
+	
+	<div id="components" class="main-section">
+		<h2>Комплектующие компьютера</h2>
+		<div class="component-container">
+			<div class="description-container">
+				<h2 id="title"></h2>
+				<p id="description"></p>
+			</div>
+			<div class="image-container">
+				<img id="image" src="" alt="Компонент ПК" class="fade">
+				<button class="swipe-button" id="left" onclick="changeComponentContent(-1)">&#9664;</button>
+				<button class="swipe-button" id="right" onclick="changeComponentContent(1)">&#9654;</button>
+			</div>
+		</div>
+	</div>
+	
+	<div id="build-tips" class="main-section">
+		<h2>Аспекты выбора комплектующих</h2>
+		<div class="tips-container">
+			<div class="tip-container">
+				<h2>Мощность</h2>
+				<p>Выбирайте комплектующие, соответствующие вашим задачам: для игр — мощный процессор и видеокарта, для офисной работы — достаточно среднего уровня. Не гонитесь за топовыми моделями, если не используете их потенциал.</p>
+			</div>
+			<div class="tip-container">
+				<h2>Перспективность</h2>
+				<p>Покупайте компоненты с учетом будущих апгрейдов. Например, материнская плата должна поддерживать современные процессоры и оперативную память, а блок питания — иметь запас мощности для новых устройств.</p>
+			</div>
+			<div class="tip-container">
+				<h2>Стоимость</h2>
+				<p>Определите бюджет и придерживайтесь его. Не стоит переплачивать за модные модели, если можно получить ту же производительность дешевле. Сравнивайте цены и читайте отзывы перед покупкой.</p>
+			</div>
+		</div>
+		
+		<div class="sliders-container">
+			<div class="slider-container" id="performance" onclick="clickComputerQualitySlider(this.id)">
+				<div class="slider-bar">
+					<div class="slider-strip"></div>
+				</div>
+				<h4>Мощность</h4>
+			</div>
+			<div class="slider-container" id="perspective" onclick="clickComputerQualitySlider(this.id)">
+				<div class="slider-bar">
+					<div class="slider-strip"></div>
+				</div>
+				<h4>Перспективность</h4>
+			</div>
+			<div class="slider-container" id="price" onclick="clickPriceSlider()">
+				<div class="slider-bar">
+					<div class="slider-strip"></div>
+				</div>
+				<h4>Стоимость</h4>
+			</div>
+		</div>
+	</div>
+	
+	<div id="projects" class="main-section">
+		<h2>Другие проекты</h2>
+		<a class="project-container" href="../CssPicture/index.html">
+			<h2>Рисунок CSS</h2>
+			<img src="../Sources/project-1.png" alt="">
+		</a>
+		<a class="project-container" href="../SvgAnimation/index.html">
+			<h2>SVG анимация</h2>
+			<img src="../Sources/project-2.png" alt="">
+		</a>
+		<a class="project-container" href="../DomTest/index.html">
+			<h2>DOM тест</h2>
+			<img src="../Sources/project-3.png" alt="">
+		</a>
+	</div>
+</main>
+<footer class="footer">
+	<div class="footer-left">
+		<h2>Контакты:</h2>
+		<p>Создатель: Касьянов Артем</p>
+		<p>Почта: kasyanov.aa@mail.ru</p>
+		<p>Группа: 5130903/20302</p>
+	</div>
+	<div class="footer-right">
+		<h2>Предмет: "Верстка и прототипирование сайтов"</h2>
+		<p>Преподаватель: Комарова Елена Викторовна</p>
+	</div>
+</footer>
+<script src="sliders.js"></script>
+<script src="computer-components.js"></script>
+</body>
+</html>

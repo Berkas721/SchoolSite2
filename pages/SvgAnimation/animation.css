@@ -1,0 +1,95 @@
+﻿#animation {
+    pointer-events: all;
+}
+
+#star-K, #star-A {
+    opacity: 1;
+}
+
+#animation:hover #star-K,
+#animation:hover #star-A {
+    animation: star-move 3s 1 normal forwards;
+    animation-play-state: running;
+}
+
+#animation:active #star-K,
+#animation:active #star-A {
+    opacity: 0;
+    animation: none;
+}
+
+@keyframes star-move {
+    0% {
+        offset-distance: 0;
+        animation-timing-function: ease-in-out;
+    }
+    50% {
+        offset-distance: 100%;
+        animation-timing-function: ease-in-out;
+    }
+    55% {
+        offset-distance: 100%;
+    }
+    100% {
+        offset-distance: 100%;
+    }
+}
+
+#animation:active #char-K,
+#animation:active #char-A {
+    animation: char-move-and-fade 1s linear 1 normal forwards;
+    animation-play-state: running;
+}
+
+@keyframes char-move-and-fade {
+    0% {
+        offset-distance: 0%;
+        opacity: 1;
+    }
+
+    100% {
+        offset-distance: 100%;
+        opacity: 0;
+    }
+}
+
+#advertising-container {
+    opacity: 0;
+    font-family: "Inter Tight", sans-serif;
+    font-size: large;
+    font-weight: bold;
+}
+
+#animation:active #advertising-container {
+    animation: advertising-animation 2s 1 normal forwards;
+}
+
+@keyframes advertising-animation {
+    0% {
+        opacity: 0;
+    }
+    45% {
+        opacity: 0;
+        animation-timing-function: ease-in-out;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#animation:active {
+    animation: shake 0.5s ease-in-out infinite alternate;
+    animation-delay: 2s;
+}
+
+@keyframes shake {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-3px);
+    }
+    100% {
+        transform: translateY(3px);
+    }
+}

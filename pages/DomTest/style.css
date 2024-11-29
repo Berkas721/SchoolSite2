@@ -1,0 +1,133 @@
+:root {
+    --font-size-common: 1.5rem;
+    --padding-common: 1rem;
+    --common-gap: 1rem;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: lightsteelblue;
+    margin: 0;
+    padding: var(--padding-common);
+}
+
+#app {
+    width: 90%;
+    max-width: max-content;
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    padding: 1.25rem 1.25rem;
+    justify-content: center;
+    font-size: var(--font-size-common);
+    cursor: pointer;
+}
+
+#button {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#start-quiz-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+}
+
+#questions-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--common-gap);
+}
+
+.question-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--common-gap);
+}
+
+.question {
+    padding: var(--padding-common);;
+    background-color: ghostwhite;
+    border: 2px solid black;
+    border-radius: 0.5%;
+    font-size: var(--font-size-common);
+    font-weight: 600;
+}
+
+
+#header, #result {
+    margin: 5% 0;
+    font-size: var(--font-size-common);
+    font-weight: bold;
+}
+
+.answer {
+    padding: var(--padding-common);
+    background-color: lightgrey;
+    border-radius: 0.5%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.answer:hover {
+    transform: scale(1.1);
+}
+
+.answer-container {
+    display: grid;
+    gap: var(--common-gap);
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.correct {
+    background-color: lightgreen;
+}
+
+.scale {
+    transform: scale(1.2);
+}
+
+.wrong {
+    background-color: lightcoral;
+}
+
+.shake {
+    animation: shake 0.3s;
+}
+
+.slide-down {
+    animation: slideDown 2s forwards;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-2%);
+    }
+    50% {
+        transform: translateX(2%);
+    }
+    75% {
+        transform: translateX(-2%);
+    }
+}
+
+@keyframes slideDown {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}

@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+
+  --scaling:  2;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background: lightsteelblue;
+}
+
+.animation-container {
+  height: calc(200px * var(--scaling));
+  width: calc(200px * var(--scaling));
+  display: block;
+  position: absolute;
+  font-size: calc(1rem * var(--scaling));
+  background-color: #C95F2C;
+}

@@ -1,0 +1,30 @@
+﻿.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+}
+
+.footer-left{
+    text-align: left;
+}
+
+.footer-right{
+    text-align: right;
+}
+
+.footer-left h2 {
+    font-size: 24px;
+    margin-top: 0;
+}
+
+.footer-right h2 {
+    font-size: 24px;
+    margin-top: 0;
+}
+
+.footer-left p, .footer-right p {
+    margin-bottom: 5px;
+}

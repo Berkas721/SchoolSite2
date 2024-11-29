@@ -1,0 +1,195 @@
+* {
+    --scaling: 1;
+    --borded-shell: calc(3px * var(--scaling));
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: lightsteelblue;
+}
+
+.scene {
+    position: relative;
+    width: calc(200px * var(--scaling));
+    height: calc(200px * var(--scaling));
+    background: linear-gradient(to bottom, #87CEEB, #fff);
+}
+
+.ground {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 15%;
+    background: repeating-linear-gradient(
+        90deg,
+        yellow,
+        yellow 20px,
+        #f7c745 20px,
+        #f7c745 40px
+    );
+}
+
+.turtle {
+    position: relative;
+    top: 54%;
+    left: 10%;
+    width: 50%;
+    height: 25%;
+}
+
+.turtle-shell {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #0b6e20, #12ab33);
+    border-radius: 
+        calc(100px * var(--scaling)) 
+        calc(100px * var(--scaling)) 
+        0 
+        0;
+    border: var(--borded-shell) solid #405919;
+    box-sizing: border-box;
+}
+
+.turtle-shell::after {
+    content: '';
+    position: absolute;
+    width: 40%;
+    height: calc(100% + calc(var(--borded-shell) * 1.6));
+    top: calc(-0.7 * var(--borded-shell));
+    left: 30%;
+    border: var(--borded-shell) solid #405919;
+    border-radius: 30% / 50%;
+    box-sizing: border-box;
+}
+
+.turtle-shell-line-block{
+    position: relative;
+    top: -62%;
+    left: 8%;
+    width: 84%;
+    height: 20%;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.turtle-shell-line {
+    content: '';
+    position: absolute;
+    width: calc(100% - calc(var(--borded-shell) * 2));
+    height: 200%;
+    top: -180%;
+    left: 0%;
+    border: var(--borded-shell) solid #405919;
+    border-radius: 40% / 50%;
+}
+
+.turtle-tail {
+    top: 70%;
+    right: 100%;
+    position: absolute;
+    width: 0; 
+    height: 0;
+    border-style: solid; 
+    border-width: 
+        calc(10px * var(--scaling)) 
+        calc(4px * var(--scaling))
+        calc(4px * var(--scaling))
+        calc(4px * var(--scaling));
+    border-color: #405919 transparent transparent transparent;
+    transform: rotate(90deg);
+    box-sizing: border-box;
+}
+
+.turtle-leg {
+    position: absolute;
+    top: 100%;
+    width: 10%;
+    height: 24%;
+    background-color: #405919;
+    mask: radial-gradient(circle at bottom, transparent 27%, black 1%);
+    mask-size: 100% 100%;
+    mask-position: bottom;
+}
+
+.turtle-leg:nth-child(5) {
+    left: 10%;
+}
+
+.turtle-leg:nth-child(6) {
+    left: 25%;
+}
+
+.turtle-leg:nth-child(7) {
+    left: 70%;
+}
+
+.turtle-leg:nth-child(8) {
+    left: 85%;
+}
+
+.turtle-head {
+    position: absolute;
+    right: -20%;
+    top: 20%;
+    width: 25%;
+    height: 50%;
+    background-color: green;
+    border-radius: 50%;
+}
+
+.turtle-head::before {
+    content: '';
+    position: absolute;
+    top: 35%;
+    left: 40%;
+    width: 20%;
+    height: 20%;
+    background-color: black;
+    border-radius: 50%;
+}
+
+.turtle-head::after {
+    content: '';
+    position: absolute;
+    top: 60%;
+    left: 58%;
+    width: 40%;
+    height: 20%;
+    border-radius: 
+        0 
+        0 
+        calc(5px * var(--scaling)) 
+        calc(5px * var(--scaling));
+    background-color: black;
+}
+
+.apple {
+    position: absolute;
+    bottom: 15%;
+    right: 15%;
+    width: 15%;
+    height: 15%;
+}
+
+.apple-body {
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    border-radius: 50%;
+    background: linear-gradient(to left, #cd5c5c,  red);
+}
+
+.apple-leaf {
+    position: absolute;
+    top: -16%;
+    left: 33%;
+    width: 33%;
+    height: 33%;
+    background-color: green;
+    transform: rotate(-30deg);
+    border-radius: 50% 50% 0 0;
+}
