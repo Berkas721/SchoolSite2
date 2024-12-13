@@ -1,0 +1,54 @@
+﻿:root {
+    --colour: 45px;
+}
+
+#table {
+    display: flex;
+    width: 62%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#table-kettlebells {
+    width: 96%;
+    height: var(--kettlebell-height);
+}
+
+#table-top {
+    display: flex;
+    width: 100%;
+    height: 15%;
+    background: #59351F;
+    border: 8px solid black;
+    border-radius: 25px;
+    box-sizing: border-box;
+}
+
+#layout-legs {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 30%;
+    align-items: stretch;
+}
+
+.table-leg {
+    display: flex;
+    width: 25px;
+    height: 100%;
+    background: #59351F;
+    border-left: 8px solid black;
+    border-right: 8px solid black;
+}
+
+.table-leg:nth-child(1) {
+    position: absolute;
+    left: 20%;
+}
+
+.table-leg:nth-child(2) {
+    position: absolute;
+    right: 20%;
+}

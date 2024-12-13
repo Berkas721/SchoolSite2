@@ -1,0 +1,66 @@
+﻿:root {
+    --kettlebell-width: 45px;
+    --kettlebell-height: 70px;
+}
+
+.kettlebell {
+    width: var(--kettlebell-width);
+    height: var(--kettlebell-height);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+
+.kettlebell-handle {
+    width: 80%;
+    height: 60%;
+    border: calc(var(--kettlebell-height) * 0.1) solid black;
+    border-radius: 40% 40% 0% 0%;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: transparent;
+    box-sizing: border-box;
+}
+
+.kettlebell-body {
+    width: 100%;
+    height: 75%;
+    background: black;
+    border-radius: 50% 50% 20% 20%;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.kettlebell-weight {
+    font-family: Arial, sans-serif;
+    font-size: calc(var(--kettlebell-width) * 0.4);
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+
+#drop-zona .kettlebell{
+    position: absolute;
+}
+
+.kettlebells-zona {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.kettlebells-zona .kettlebell{
+    margin: 0 1.5px;
+}
+
+.kettlebells-zona .kettlebell:hover {
+    transform: translateY(-10px);
+}

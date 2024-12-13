@@ -19,6 +19,7 @@ body {
     max-width: max-content;
     display: flex;
     flex-direction: column;
+    margin-top: 100px;
 }
 
 button {

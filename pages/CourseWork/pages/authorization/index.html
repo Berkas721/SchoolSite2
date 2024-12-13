@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Your Name</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../../../common/header.css">
+</head>
+
+<body>
+<header>
+    <div class="logo">
+        <img src="../../../Sources/logo.svg" alt="">
+        <span>PC Wizard</span>
+    </div>
+    <nav>
+        <a href="../authorization/index.html">Авторизация</a>
+        <a href="../game/index.html">Игра</a>
+        <a href="../rating/index.html">Рейтинг</a>
+        <a href="../../../../index.html">Вернуться на главную страницу</a>
+    </nav>
+</header>
+
+<div class="main">
+    <div class="name-input-box" id="inputBox">
+        <h1>Введите ваше имя</h1>
+        <input type="text" id="nameInput" placeholder="Ваше имя" />
+        <button id="confirmButton" disabled>Подтвердить</button>
+    </div>
+
+    <div class="welcome-box" id="welcomeBox" style="display: none;">
+        <h1 id="welcomeMessage"></h1>
+        <p>Что вы хотите?</p>
+        <button onclick="window.location.href='../game/index.html'">Играть</button>
+        <button onclick="window.location.href='../rating/index.html'">Посмотреть рейтинг</button>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

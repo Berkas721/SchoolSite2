@@ -1,0 +1,20 @@
+﻿[
+  {
+    "minWeight": 5,
+    "maxWeight": 20,
+    "name": "собака",
+    "pictureName": "dog.svg"
+  },
+  {
+    "minWeight": 30,
+    "maxWeight": 80,
+    "name": "овечка",
+    "pictureName": "sheep.svg"
+  },
+  {
+    "minWeight": 100,
+    "maxWeight": 500,
+    "name": "корова",
+    "pictureName": "cow.svg"
+  }
+]

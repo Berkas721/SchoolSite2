@@ -5,69 +5,81 @@
     <title>KA animation</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="animation.css">
+    <link rel="stylesheet" href="../common/header.css">
 </head>
 <body>
-    <div class="animation-container">
-        <svg
-            id="animation"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 200 200"
-            shape-rendering="geometricPrecision"
-            text-rendering="geometricPrecision"
+
+<header>
+    <div class="logo">
+        <img src="../Sources/logo.svg" alt="">
+        <span>PC Wizard</span>
+    </div>
+    <nav>
+        <a href="../../index.html">Вернуться на главную страницу</a>
+    </nav>
+</header>
+
+<div class="animation-container">
+    <svg
+        id="animation"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 200 200"
+        shape-rendering="geometricPrecision"
+        text-rendering="geometricPrecision"
+    >
+        <g id="char-K" 
+           style="
+               offset-path: path('M-38,29 L30,90');
+               offset-rotate:0deg"
         >
-            <g id="char-K" 
-               style="
-                   offset-path: path('M-38,29 L30,90');
-                   offset-rotate:0deg"
-            >
-              <polygon id="char-K-body" 
-                       points="143,30 183,80 163,80 134,45 134,80 118,80 118,-20 134,-20 134,16 163,-20 183,-20 143,30" 
-                       transform="scale(0.5)" 
-                       fill="#753313" 
-                       stroke-width="0"/>
-            </g>
+          <polygon id="char-K-body" 
+                   points="143,30 183,80 163,80 134,45 134,80 118,80 118,-20 134,-20 134,16 163,-20 183,-20 143,30" 
+                   transform="scale(0.5)" 
+                   fill="#753313" 
+                   stroke-width="0"/>
+        </g>
 
-            <g id="char-A" 
-               style="
-                   offset-path: path('M137,176 L75,127');
-                   offset-rotate:0deg"
-            >
-              <polygon id="char-A-body" 
-                       points="10,0 0,0 15,-47 25,-47 40,0 30,0 20,-40 10,0 14,-23 26,-23 27,-17 13,-17"
-                       fill="#722008" 
-                       stroke-width="0" />
-            </g>
+        <g id="char-A" 
+           style="
+               offset-path: path('M137,176 L75,127');
+               offset-rotate:0deg"
+        >
+          <polygon id="char-A-body" 
+                   points="10,0 0,0 15,-47 25,-47 40,0 30,0 20,-40 10,0 14,-23 26,-23 27,-17 13,-17"
+                   fill="#722008" 
+                   stroke-width="0" />
+        </g>
 
-            <g id="star-K"
-               style="
-                   offset-path: path('M0,1 L0,-16.5 L0,-48 L8,-48 L8,-30 L22,-48 L32,-48 L13,-23 C13,-23,23,-10,32,2 L22,2 L8,-15.5 L8,2 L0,2');
-                   offset-rotate:0deg"
-            >
-                <polygon id="star-K-body"
-                         points="0,-8 2,-3 8,-3 4,1 5,7 0,4 -5,7 -4,1 -8,-3 -2,-3 0,-8"
-                         transform="translate(21,66.5) scale(0.5)"
-                         fill="#ece927"
-                         stroke-width="0" />
-            </g>
+        <g id="star-K"
+           style="
+               offset-path: path('M0,1 L0,-16.5 L0,-48 L8,-48 L8,-30 L22,-48 L32,-48 L13,-23 C13,-23,23,-10,32,2 L22,2 L8,-15.5 L8,2 L0,2');
+               offset-rotate:0deg"
+        >
+            <polygon id="star-K-body"
+                     points="0,-8 2,-3 8,-3 4,1 5,7 0,4 -5,7 -4,1 -8,-3 -2,-3 0,-8"
+                     transform="translate(21,66.5) scale(0.5)"
+                     fill="#ece927"
+                     stroke-width="0" />
+        </g>
 
-            <g id="star-A" 
-               style="
-                   offset-path: path('M167,176.5 L163,162.5 L162,156.5 L152,156.5 L147,176.5 L137,176.5 L152,126.5 L162,126.5 L177,176.5 L167,176.5');
-                   offset-rotate:0deg"
-            >
-              <polygon id="star-A-body" 
-                       points="0,-8 2,-3 8,-3 4,1 5,7 0,4 -5,7 -4,1 -8,-3 -2,-3 0,-8" 
-                       transform="translate(0,-1) scale(0.5)"
-                       fill="#ece927" 
-                       stroke-width="0" />
-            </g>
+        <g id="star-A" 
+           style="
+               offset-path: path('M167,176.5 L163,162.5 L162,156.5 L152,156.5 L147,176.5 L137,176.5 L152,126.5 L162,126.5 L177,176.5 L167,176.5');
+               offset-rotate:0deg"
+        >
+          <polygon id="star-A-body" 
+                   points="0,-8 2,-3 8,-3 4,1 5,7 0,4 -5,7 -4,1 -8,-3 -2,-3 0,-8" 
+                   transform="translate(0,-1) scale(0.5)"
+                   fill="#ece927" 
+                   stroke-width="0" />
+        </g>
 
-            <g id="advertising-container">
-                <text x="20" y="165">Здесь могла быть</text>
-                <text x="35" y="180">ваша реклама</text>
-                <image href="./some-picture.jpg" height="100" width="100" transform="translate(50,35)"/>
-            </g>
-        </svg>
-   </div>
+        <g id="advertising-container">
+            <text x="20" y="165">Здесь могла быть</text>
+            <text x="35" y="180">ваша реклама</text>
+            <image href="./some-picture.jpg" height="100" width="100" transform="translate(50,35)"/>
+        </g>
+    </svg>
+</div>
 </body>
 </html>

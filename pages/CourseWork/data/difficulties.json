@@ -1,0 +1,23 @@
+﻿[
+  {
+    "name": "легкая",
+    "maxGameTime": 60,
+    "dropKettlebellDelay": 14,
+    "additionalKettlebellSpeed": 0,
+    "randomKettlebellProportion": 0.3
+  },
+  {
+    "name": "средняя",
+    "maxGameTime": 90,
+    "dropKettlebellDelay": 12,
+    "additionalKettlebellSpeed": 0.5,
+    "randomKettlebellProportion": 0.45
+  },
+  {
+    "name": "тяжелая",
+    "maxGameTime": 60,
+    "dropKettlebellDelay": 10,
+    "additionalKettlebellSpeed": 1,
+    "randomKettlebellProportion": 0.6
+  }
+]

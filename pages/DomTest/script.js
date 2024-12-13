@@ -77,13 +77,14 @@ let shuffledQuestions = shuffleArray([...questionsData]);
 let currentQuestionIndex = 0;
 let correctAnswers = 0;
 
+const startButtonContainer = document.getElementById("start-quiz-container")
 const startButton = document.getElementById('start-quiz-button');
 const header = document.getElementById('header');
 const getAnswerStatus = answerData => answerData.correct ? 'correct' : 'wrong';
 
 startButton.addEventListener('click', () => {
     header.innerHTML = 'Вопросы:';
-    startButton.style.display = 'none';
+    startButtonContainer.remove();
     showNextQuestion();
 });
 
