@@ -12,6 +12,9 @@ const gameStateButton = document.getElementById('game-state-button');
 const animalButton = document.getElementById('animal-button');
 const difficultyButton = document.getElementById('difficulty-button');
 
+const kettlebellsWeightContainer = document.getElementById('total-kettlebells-weight');
+const animalWeightContainer = document.getElementById('animal-weight');
+
 const gameStates = { Dialog: 0, Nothing: 1, Active: 2};
 
 let game = {
@@ -28,6 +31,8 @@ const getUserName = () => localStorage.getItem('username');
 // анимация падения
 
 function startDropKettlebell(kettlebell) {
+    const delay = game.difficultySettings.dropKettlebellDelay * 1000;
+
     setTimeout(() => {
         if(!game.kettlebells.some(x => x.id === kettlebell.id))
             return;
@@ -38,7 +43,11 @@ function startDropKettlebell(kettlebell) {
             return;
 
         let kettlebellContainer = createKettlebellInDropZona(kettlebell.weight, kettlebell.id);
-        dropElement(kettlebell.dropSpeed);
+
+        if (game.difficultySettings.name === 'легкая' || game.difficultySettings.name === 'сложная')
+            dropElement(kettlebell.dropSpeed);
+        else
+            waitAndDisappear();
 
         function dropElement(speed) {
             if(game.state !== gameStates.Active || kettlebell.zona !== 1){
@@ -61,8 +70,26 @@ function startDropKettlebell(kettlebell) {
                 setTimeout(() => {
                     kettlebellContainer = createKettlebellInDropZona(kettlebell.weight, kettlebell.id);
                     requestAnimationFrame(() => dropElement(speed));
-                }, game.difficultySettings.dropKettlebellDelay * 1000);
+                }, delay);
             }
+        }
+
+        function waitAndDisappear(){
+            let existTime = 2000 + Math.random() * 5000;
+            
+            setTimeout(() => {
+                kettlebellContainer.style.animation = 'fade-out 3s forwards';
+                kettlebellContainer.addEventListener("animationend", () => {
+                    kettlebellContainer.remove();
+                });
+            }, existTime);
+
+            setTimeout(() => {
+                if (game.state === gameStates.Active && kettlebell.zona === 1){
+                    kettlebellContainer = createKettlebellInDropZona(kettlebell.weight, kettlebell.id);
+                    waitAndDisappear();
+                }
+            }, existTime + delay);
         }
             
     }, kettlebell.appearDelay * 1000);
@@ -71,14 +98,22 @@ function startDropKettlebell(kettlebell) {
 
 // создание гирек
 
-function createKettlebellInDropZona(weight, id){
+function createKettlebellInDropZona(weight, id, x, y){
     const kettlebellSizes = getComputedStyle(document.querySelector(':root'));
     const kettlebellHeight = parseInt(kettlebellSizes.getPropertyValue('--kettlebell-height'), 10);
     const kettlebellWidth = parseInt(kettlebellSizes.getPropertyValue('--kettlebell-width'), 10);
     
     let container = createKettlebellContainer(weight, id);
-    container.style.top = `${-kettlebellHeight}px`;
-    container.style.left = `${Math.floor(Math.random() * (dropZona.offsetWidth - kettlebellWidth))}px`;
+
+    if (game.difficultySettings.name === 'легкая') {
+        container.style.top = `${-kettlebellHeight}px`;
+        container.style.left = `${Math.floor(Math.random() * (dropZona.offsetWidth - kettlebellWidth))}px`;
+    } else {
+        container.style.top = `${Math.floor(Math.random() * (dropZona.offsetHeight - kettlebellHeight))}px`;
+        container.style.left = `${Math.floor(Math.random() * (dropZona.offsetWidth - kettlebellWidth))}px`;
+    }
+    
+    
     dropZona.appendChild(container);
     return container;
 }
@@ -104,14 +139,25 @@ function createKettlebellContainer(weight, id) {
     kettlebell.appendChild(body);
 
     kettlebell.draggable = true;
+
     kettlebell.addEventListener('dragstart', (e) => {
         if(game.state === gameStates.Active){
             e.dataTransfer.setData('text/plain', id);
             e.target.style.opacity = '0.5';
         }
     });
+
     kettlebell.addEventListener('dragend', (e) => {
         e.target.style.opacity = '1';
+    });
+
+    kettlebell.addEventListener('click', (e) => {
+        moveKettlebellToTableZona(id);
+    });
+
+    kettlebell.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        deleteKettlebell(id);
     });
 
     return kettlebell;
@@ -137,27 +183,35 @@ function defaultKettlebellDragover(event){
 }
 
 tableZona.addEventListener('drop', (e) => {
+    const id = e.dataTransfer.getData('text/plain');
+    moveKettlebellToTableZona(id);
+});
+
+function moveKettlebellToTableZona(id){
     if(game.state !== gameStates.Active)
         return;
 
-    const id = e.dataTransfer.getData('text/plain');
     let kettlebellContainer = document.getElementById(id);
     const kettlebellData = game.kettlebells.find(x => x.id === id);
 
-    if (tableZona.children.length < 6 && kettlebellData.zona !== 2){
+    if (tableZona.children.length < 6 && kettlebellData.zona !== 2 && game.difficultySettings.name !== 'тяжелая'){
         updateKettlebellZona(kettlebellData, 2);
 
         kettlebellContainer.remove();
         kettlebellContainer = createKettlebellContainer(kettlebellData.weight, kettlebellData.id);
         tableZona.appendChild(kettlebellContainer)
     }
-});
+}
 
 scalesZona.addEventListener('drop', (e) => {
+    const id = e.dataTransfer.getData('text/plain');
+    moveKettlebellToScaleZona(id);
+});
+
+function moveKettlebellToScaleZona(id){
     if(game.state !== gameStates.Active)
         return;
 
-    const id = e.dataTransfer.getData('text/plain');
     let kettlebellContainer = document.getElementById(id);
     const kettlebellData = game.kettlebells.find(x => x.id === id);
 
@@ -168,26 +222,33 @@ scalesZona.addEventListener('drop', (e) => {
 
         updateKettlebellZona(kettlebellData, 3);
     }
-});
+}
 
 trashZona.addEventListener('drop', (e) => {
+    const id = e.dataTransfer.getData('text/plain');
+    deleteKettlebell(id);
+});
+
+function deleteKettlebell(id){
     if(game.state !== gameStates.Active)
         return;
 
-    const id = e.dataTransfer.getData('text/plain');
     const kettlebellData = game.kettlebells.find(x => x.id === id);
     document.getElementById(id).remove();
 
     updateKettlebellZona(kettlebellData, 1);
     startDropKettlebell(kettlebellData);
-});
+}
 
 
-// нужно заменить на "Добавить гирю на весы" и "Взять гирю с весов"
+// Обновление весов
 function updateKettlebellZona(kettlebell, zona){
     const leftBowlWeightOld = getLeftBowlWeight();
     kettlebell.zona = zona;
     const leftBowlWeightNew = getLeftBowlWeight();
+
+    updateKettlebellsWeight(leftBowlWeightNew);
+    updateAnimalWeightRange(leftBowlWeightNew);
 
     if (leftBowlWeightOld === leftBowlWeightNew)
         return;
@@ -270,7 +331,7 @@ function getLeftBowlWeight() {
 }
 
 
-// кнопка по смене диапозона веса
+// кнопка по животного
 
 animalButton.addEventListener('click', () => {
     if (game.state === gameStates.Nothing)
@@ -292,6 +353,8 @@ function updateAnimal() {
 
             game.animal = {
                 name: newAnimal.name,
+                minWeightConst: newAnimal.minWeight,
+                maxWeightConst: newAnimal.maxWeight,
                 minWeight: newAnimal.minWeight,
                 maxWeight: newAnimal.maxWeight,
                 weight: null
@@ -305,6 +368,8 @@ function updateAnimal() {
             animalPictureContainer.innerHTML = '';
             animalPictureContainer.appendChild(animalPicture);
 
+            animalWeightContainer.innerHTML = `${game.animal.minWeightConst} - ${game.animal.maxWeightConst}`;
+
             animalButton.innerHTML = `Животное:<br>${newAnimal.name}`;
         })
         .catch(error => console.error('Ошибка при исполнении запроса: ', error));
@@ -317,6 +382,8 @@ difficultyButton.addEventListener('click', () => {
     if (game.state === gameStates.Nothing)
         updateDifficulty();
 });
+
+const table  = document.getElementById('table');
 
 function updateDifficulty() {
     fetch(`../../data/difficulties.json`)
@@ -335,10 +402,13 @@ function updateDifficulty() {
 
             game.remainingTime = game.difficultySettings.maxGameTime;
             updateTimerContent();
+
+            table.style.opacity = game.difficultySettings.name === 'тяжелая' ? 0 : 1;
+            kettlebellsWeightContainer.style.opacity = game.difficultySettings.name === 'тяжелая' ? 0 : 1;
+            animalWeightContainer.style.opacity = game.difficultySettings.name === 'тяжелая' ? 0 : 1;
         })
         .catch(error => console.error('Ошибка при исполнении запроса: ', error));
 }
-
 
 // кнопка для начала / окончания игры
 
@@ -366,7 +436,7 @@ function startGame(){
         game.needToClear = false;
     }
 
-    game.animal.weight = roundWeight(game.animal.minWeight + Math.random() * (game.animal.maxWeight - game.animal.minWeight));
+    game.animal.weight = roundWeight(game.animal.minWeightConst + Math.random() * (game.animal.maxWeightConst - game.animal.minWeightConst));
     console.log(game.animal.weight);
 
     let weights = generateWeights();
@@ -477,7 +547,7 @@ function generateWeights(){
 
     let randomWeightsCount = Math.round(result.length * game.difficultySettings.randomKettlebellProportion);
     for (let i = 1; i <= randomWeightsCount; i++)
-        result.push(roundWeight((0.2 + Math.random() * 0.6) * (game.animal.maxWeight - game.animal.minWeight)));
+        result.push(roundWeight((0.2 + Math.random() * 0.6) * (game.animal.maxWeightConst - game.animal.minWeightConst)));
 
     return shuffleArray(result);
 }
@@ -532,6 +602,28 @@ function updateTimerContent() {
     timerContainer.innerHTML = game.remainingTime >= 60
         ? formatTime(game.remainingTime)
         : formatMillis(game.remainingTime)
+}
+
+
+// Отображение веса
+
+function updateKettlebellsWeight(kettlebellsWeight) {
+    kettlebellsWeightContainer.innerHTML = kettlebellsWeight > 0 ? kettlebellsWeight : '';
+}
+
+function updateAnimalWeightRange(kettlebellsWeight) {
+    let rangeMin = Math.abs(game.animal.minWeight - kettlebellsWeight);
+    let rangeMax = Math.abs(game.animal.maxWeight - kettlebellsWeight);
+    
+    let canUpdateMinWeight = kettlebellsWeight > game.animal.minWeight && kettlebellsWeight < game.animal.weight;
+    let canUpdateMaxWeight = kettlebellsWeight < game.animal.maxWeight && kettlebellsWeight > game.animal.weight;
+    
+    if (canUpdateMinWeight && (rangeMin < rangeMax || !canUpdateMaxWeight))
+        game.animal.minWeight = kettlebellsWeight;
+    else if (canUpdateMaxWeight)
+        game.animal.maxWeight = kettlebellsWeight;
+
+    animalWeightContainer.innerHTML = `${game.animal.minWeight} - ${game.animal.maxWeight}`;
 }
 
 
@@ -604,6 +696,11 @@ function clearWindow(){
 
     leftBowlLeg.style.height = `${maxBowlLegHeight}px`;
     rightBowlLeg.style.height = `${minBowlLegHeight}px`;
+
+    kettlebellsWeightContainer.innerHTML = '';
+    
+    // TODO: обновление по животному / ничего не делаем
+    animalWeightContainer.innerHTML = `${game.animal.minWeightConst} - ${game.animal.maxWeightConst}`;
 }
 
 

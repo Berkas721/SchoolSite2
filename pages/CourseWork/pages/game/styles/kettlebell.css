@@ -11,6 +11,18 @@
     align-items: center;
     justify-content: center;
     user-select: none;
+    animation: none;
+}
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
 }
 
 .kettlebell-handle {
