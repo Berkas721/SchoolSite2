@@ -1,4 +1,9 @@
-﻿body {
+﻿* {
+    --font-size-basic: 24;
+    --borded-shell: calc(3px * var(--scaling));
+}
+
+body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -49,4 +54,77 @@ main {
     font-size: 40px;
     margin: 50px;
     color: darkblue;
+}
+
+@media(max-width: 700px){
+    .main-section{
+        width: 100%;
+    }
+    .computer-components .footer{
+        font-size: 10px;
+    }
+    .main-section{
+        font-size: 20px;
+    }
+    .site-title{
+        font-size: 20px;
+    }
+    .site-subtitle{
+        font-size: 10px;
+    }
+    .main-section > h2{
+        font-size: 10px;
+        margin: 15px;
+    }
+    .description-container{
+        padding: 5px;
+        margin-bottom: 5px;
+        font-size: 7px;
+    }
+    .slider-bar{
+        height: 200px;
+    }
+    .tip-container h2{
+        font-size: 10px;
+    }
+    .tip-container p{
+        font-size: 7px;
+    }
+    #home #wizard{
+        max-width: 200px;
+        max-height: 200px;
+    }
+    .project-container h2{
+        font-size: 10px;
+    }
+    .project-container img{
+        max-width: 250px;
+        max-height: 250px;
+    }
+    .logo a{
+        font-size: 5px;
+    }
+    .footer-left{
+        font-size: 5px;
+    }
+    .footer-right{
+        font-size: 5px;
+    }
+    .footer-left h2{
+        font-size: 7px;
+    }
+    .footer-right h2{
+        font-size: 7px;
+    }
+    .sliders-container{
+        width: 100%;
+        height: 200px;
+    }
+    .slider-container h4{
+        font-size: 7px;
+    }
+    .image-container{
+        max-height: 400px;
+        max-width: 400px;
+    }
 }
